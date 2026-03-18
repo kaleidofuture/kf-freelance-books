@@ -476,4 +476,4 @@ else:
     st.info(t("no_file"))
 
 # --- Footer ---
-render_footer(libraries=["pandas"])
+render_footer(libraries=["pandas"], repo_name="kf-freelance-books")
