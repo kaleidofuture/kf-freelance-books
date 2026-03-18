@@ -1,7 +1,7 @@
 """KF-FreelanceBooks — Freelance bookkeeping helper with keyword-based categorization."""
 
 import io
-from datetime import datetime
+from datetime import datetime, date
 
 import pandas as pd
 import streamlit as st
@@ -53,6 +53,16 @@ DEFAULT_RULES_JA = [
     {"keyword": "事務用品", "category": "消耗品費"},
     {"keyword": "コンビニ", "category": "消耗品費"},
     {"keyword": "100均", "category": "消耗品費"},
+    # Creator-specific rules
+    {"keyword": "画材", "category": "消耗品費"},
+    {"keyword": "CLIP STUDIO", "category": "消耗品費"},
+    {"keyword": "Wacom", "category": "消耗品費"},
+    {"keyword": "Adobe", "category": "消耗品費"},
+    {"keyword": "フォント", "category": "消耗品費"},
+    {"keyword": "素材", "category": "消耗品費"},
+    {"keyword": "イラスト", "category": "新聞図書費"},
+    {"keyword": "pixiv", "category": "新聞図書費"},
+    {"keyword": "BOOTH", "category": "新聞図書費"},
     {"keyword": "電気", "category": "水道光熱費"},
     {"keyword": "ガス", "category": "水道光熱費"},
     {"keyword": "水道", "category": "水道光熱費"},
@@ -103,6 +113,15 @@ DEFAULT_RULES_EN = [
     {"keyword": "amazon", "category": "Supplies"},
     {"keyword": "office", "category": "Supplies"},
     {"keyword": "staples", "category": "Supplies"},
+    # Creator-specific rules
+    {"keyword": "art supplies", "category": "Supplies"},
+    {"keyword": "CLIP STUDIO", "category": "Supplies"},
+    {"keyword": "Wacom", "category": "Supplies"},
+    {"keyword": "Adobe", "category": "Supplies"},
+    {"keyword": "font", "category": "Supplies"},
+    {"keyword": "illustration", "category": "Books & Education"},
+    {"keyword": "pixiv", "category": "Books & Education"},
+    {"keyword": "BOOTH", "category": "Books & Education"},
     {"keyword": "electric", "category": "Utilities"},
     {"keyword": "gas", "category": "Utilities"},
     {"keyword": "water", "category": "Utilities"},
@@ -204,6 +223,35 @@ def parse_amount(value) -> float:
     except ValueError:
         return 0.0
 
+
+def get_tax_recommendation(annual_income: float) -> tuple[str, str]:
+    """Return (recommendation_key, detail) based on annual income."""
+    from components.i18n import get_lang
+
+    if annual_income <= 300:
+        return "tax_rec_white", "tax_rec_white_detail"
+    elif annual_income <= 1000:
+        return "tax_rec_simple_blue", "tax_rec_simple_blue_detail"
+    else:
+        return "tax_rec_full_blue", "tax_rec_full_blue_detail"
+
+
+# --- Sidebar: Tax Filing Guide ---
+with st.sidebar:
+    st.markdown(f"### {t('tax_guide_title')}")
+    st.caption(t("tax_guide_help"))
+    annual_income = st.number_input(
+        t("tax_guide_income_label"),
+        min_value=0.0,
+        max_value=100000.0,
+        value=0.0,
+        step=50.0,
+        format="%.0f",
+    )
+    if annual_income > 0:
+        rec_key, detail_key = get_tax_recommendation(annual_income)
+        st.success(t(rec_key))
+        st.caption(t(detail_key))
 
 # --- Main UI ---
 
@@ -310,6 +358,43 @@ if uploaded_file is not None:
 
                 # Show classified transactions
                 st.dataframe(work_df, use_container_width=True)
+
+                # --- Manual Entry Section ---
+                st.markdown(f"#### {t('manual_entry_title')}")
+                with st.expander(t("manual_entry_expand")):
+                    with st.form("manual_entry_form"):
+                        me_col1, me_col2 = st.columns(2)
+                        with me_col1:
+                            me_date = st.date_input(t("manual_date"), value=date.today())
+                            me_desc = st.text_input(t("manual_description"))
+                        with me_col2:
+                            me_amount = st.number_input(
+                                t("manual_amount"),
+                                value=0.0,
+                                step=100.0,
+                                format="%.0f",
+                                help=t("manual_amount_help"),
+                            )
+                            # Gather unique categories from current rules
+                            all_categories = sorted(set(r["category"] for r in current_rules))
+                            me_category = st.selectbox(t("manual_category"), options=all_categories)
+
+                        me_submitted = st.form_submit_button(t("manual_add"), type="secondary")
+
+                    if me_submitted and me_desc:
+                        new_row = {
+                            t("col_date"): me_date.strftime("%Y-%m-%d") if t("col_date") in work_df.columns else None,
+                            t("col_description"): me_desc,
+                            t("col_amount"): me_amount,
+                            t("col_category"): me_category,
+                        }
+                        # Remove None columns
+                        new_row = {k: v for k, v in new_row.items() if v is not None}
+                        new_row_df = pd.DataFrame([new_row])
+                        st.session_state["classified_df"] = pd.concat(
+                            [work_df, new_row_df], ignore_index=True
+                        )
+                        st.rerun()
 
                 # Stats
                 cat_col = t("col_category")

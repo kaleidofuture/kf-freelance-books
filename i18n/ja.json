@@ -40,5 +40,22 @@
   "download_summary": "勘定科目別集計CSV（確定申告用）",
   "tax_category_col": "勘定科目",
   "tax_amount_col": "金額",
-  "desktop_recommended": "このアプリはデスクトップでのご利用を推奨しています"
+  "desktop_recommended": "このアプリはデスクトップでのご利用を推奨しています",
+  "tax_guide_title": "申告方式ガイド",
+  "tax_guide_help": "年間収入（万円）を入力すると、おすすめの申告方式を表示します。",
+  "tax_guide_income_label": "年間収入（万円）",
+  "tax_rec_white": "おすすめ: 白色申告",
+  "tax_rec_white_detail": "収入300万円以下の場合、白色申告が手間が少なくおすすめです。帳簿は簡易な単式簿記でOK。",
+  "tax_rec_simple_blue": "おすすめ: 青色申告（簡易簿記・10万円控除）",
+  "tax_rec_simple_blue_detail": "収入300〜1000万円の場合、簡易簿記による青色申告がおすすめです。10万円の青色申告特別控除が受けられます。",
+  "tax_rec_full_blue": "おすすめ: 青色申告（複式簿記・65万円控除）",
+  "tax_rec_full_blue_detail": "収入1000万円超の場合、複式簿記による青色申告で最大65万円の控除を活用しましょう。会計ソフトの利用を推奨します。",
+  "manual_entry_title": "手入力で取引を追加",
+  "manual_entry_expand": "手入力フォームを開く",
+  "manual_date": "日付",
+  "manual_description": "摘要",
+  "manual_amount": "金額",
+  "manual_amount_help": "経費はマイナス値、収入はプラス値で入力してください。",
+  "manual_category": "勘定科目",
+  "manual_add": "追加"
 }

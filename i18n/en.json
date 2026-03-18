@@ -40,5 +40,22 @@
   "download_summary": "Download Category Summary CSV (for tax filing)",
   "tax_category_col": "Category",
   "tax_amount_col": "Amount",
-  "desktop_recommended": "This app is optimized for desktop use"
+  "desktop_recommended": "This app is optimized for desktop use",
+  "tax_guide_title": "Tax Filing Guide",
+  "tax_guide_help": "Enter your annual income to see the recommended filing method.",
+  "tax_guide_income_label": "Annual Income (10K yen)",
+  "tax_rec_white": "Recommended: White Return (Shiro-shoku)",
+  "tax_rec_white_detail": "For income under 3M yen, a simple white return requires minimal bookkeeping with single-entry accounting.",
+  "tax_rec_simple_blue": "Recommended: Blue Return - Simple (100K yen deduction)",
+  "tax_rec_simple_blue_detail": "For income between 3-10M yen, a simple blue return with single-entry bookkeeping gives you a 100K yen special deduction.",
+  "tax_rec_full_blue": "Recommended: Blue Return - Full (650K yen deduction)",
+  "tax_rec_full_blue_detail": "For income over 10M yen, a full blue return with double-entry bookkeeping gives you up to 650K yen deduction. Accounting software recommended.",
+  "manual_entry_title": "Add Transaction Manually",
+  "manual_entry_expand": "Open manual entry form",
+  "manual_date": "Date",
+  "manual_description": "Description",
+  "manual_amount": "Amount",
+  "manual_amount_help": "Enter negative values for expenses, positive for income.",
+  "manual_category": "Category",
+  "manual_add": "Add"
 }
