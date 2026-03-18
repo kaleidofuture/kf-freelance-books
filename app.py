@@ -376,7 +376,7 @@ if uploaded_file is not None:
                                 help=t("manual_amount_help"),
                             )
                             # Gather unique categories from current rules
-                            all_categories = sorted(set(r["category"] for r in current_rules))
+                            all_categories = sorted(set(r["category"] for r in current_rules)) if current_rules else [t("uncategorized")]
                             me_category = st.selectbox(t("manual_category"), options=all_categories)
 
                         me_submitted = st.form_submit_button(t("manual_add"), type="secondary")
