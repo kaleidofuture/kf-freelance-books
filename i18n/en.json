@@ -39,5 +39,6 @@
   "download_classified": "Download Classified Transactions CSV",
   "download_summary": "Download Category Summary CSV (for tax filing)",
   "tax_category_col": "Category",
-  "tax_amount_col": "Amount"
+  "tax_amount_col": "Amount",
+  "desktop_recommended": "This app is optimized for desktop use"
 }

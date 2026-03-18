@@ -39,5 +39,6 @@
   "download_classified": "分類済み全データCSV",
   "download_summary": "勘定科目別集計CSV（確定申告用）",
   "tax_category_col": "勘定科目",
-  "tax_amount_col": "金額"
+  "tax_amount_col": "金額",
+  "desktop_recommended": "このアプリはデスクトップでのご利用を推奨しています"
 }
