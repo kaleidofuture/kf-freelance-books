@@ -1,3 +1,14 @@
+---
+title: kf-freelance-books
+emoji: 🚀
+colorFrom: green
+colorTo: blue
+sdk: streamlit
+sdk_version: 1.44.1
+app_file: app.py
+pinned: false
+---
+
 # KF-FreelanceBooks
 
 > 銀行CSVを取り込んで、キーワードで経費を自動分類。確定申告の地獄を脱出。
