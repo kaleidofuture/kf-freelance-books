@@ -57,5 +57,6 @@
   "manual_amount": "Amount",
   "manual_amount_help": "Enter negative values for expenses, positive for income.",
   "manual_category": "Category",
-  "manual_add": "Add"
+  "manual_add": "Add",
+  "report_issue": "Report an issue"
 }

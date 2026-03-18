@@ -57,5 +57,6 @@
   "manual_amount": "金額",
   "manual_amount_help": "経費はマイナス値、収入はプラス値で入力してください。",
   "manual_category": "勘定科目",
-  "manual_add": "追加"
+  "manual_add": "追加",
+  "report_issue": "不具合を報告"
 }
